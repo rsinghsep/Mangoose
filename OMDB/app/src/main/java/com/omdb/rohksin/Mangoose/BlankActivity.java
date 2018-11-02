@@ -54,7 +54,7 @@ import java.util.List;
 public class BlankActivity extends AppCompatActivity {
 
     private DetailMovie movie;
-    public static String OBJECTMAPPED ="com.omdb.rohksin.omdb.BlankActivity.ObjectMapped";
+    public static String OBJECTMAPPED = "com.omdb.rohksin.omdb.BlankActivity.ObjectMapped";
     public static String MOVIE_LIST ="com.omdb.rohksin.omdb.BlankActivity.MovieList";
 
     private CollapsingToolbarLayout layout;
