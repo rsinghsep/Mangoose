@@ -26,15 +26,25 @@ import java.util.ArrayList;
  */
 public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.PeopleViewHolder> {
 
-
+    /*/////////////////////////////////////////////////
+    //MEMBERS
+    /*/////////////////////////////////////////////////
     private ArrayList<PeopleDetail> list;
     private Context context;
 
+
+    /*/////////////////////////////////////////////////
+    //CONSTRUCTOR
+    /*/////////////////////////////////////////////////
     public PeopleListAdapter(ArrayList<PeopleDetail> list, Context context) {
         this.list = list;
         this.context = context;
     }
 
+
+    /*/////////////////////////////////////////////////
+    //LIFECYCLE METHODS
+    /*/////////////////////////////////////////////////
     @Override
     public PeopleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -43,7 +53,6 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
         PeopleViewHolder pvh = new PeopleViewHolder(view);
         return pvh;
     }
-
     @Override
     public void onBindViewHolder(final PeopleViewHolder holder, int position) {
         // holder.personName.setText(list.get(position).getName());
@@ -68,24 +77,25 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
                 Intent i = new Intent(context, PeopleDetailActivity.class);
                 i.putExtra(ActorsListAdapter.ACTOR_ID, movieId);
 
-                if(Build.VERSION.SDK_INT>20)
-                {
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity)context,holder.posterThumbnail,"ACTOR");
-                    context.startActivity(i,options.toBundle());
-                }
-                else {
+                if (Build.VERSION.SDK_INT > 20) {
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, holder.posterThumbnail, "ACTOR");
+                    context.startActivity(i, options.toBundle());
+                } else {
                     context.startActivity(i);
                 }
             }
         });
         // holder.posterThumbnail.setImageResource();
     }
-
     @Override
     public int getItemCount() {
         return list.size();
     }
 
+
+    /*/////////////////////////////////////////////////
+    //View Holder Class
+    /*/////////////////////////////////////////////////
     public class PeopleViewHolder extends RecyclerView.ViewHolder {
 
         ImageView posterThumbnail;
@@ -93,21 +103,18 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
         TextView knownFor;
         View mainCard;
 
-
         public PeopleViewHolder(View itemView) {
             super(itemView);
             posterThumbnail = (ImageView) itemView.findViewById(R.id.posterThumbnail);
             title = (TextView) itemView.findViewById(R.id.title);
-            knownFor = (TextView)itemView.findViewById(R.id.overview);
-            mainCard = (View)itemView.findViewById(R.id.peoplemainCard);
+            knownFor = (TextView) itemView.findViewById(R.id.overview);
+            mainCard = (View) itemView.findViewById(R.id.peoplemainCard);
 
-            if(Build.VERSION.SDK_INT>20)
-            posterThumbnail.setTransitionName("ACTOR");
+            if (Build.VERSION.SDK_INT > 20)
+                posterThumbnail.setTransitionName("ACTOR");
 
 
         }
     }
 
-    {
-    }
 }

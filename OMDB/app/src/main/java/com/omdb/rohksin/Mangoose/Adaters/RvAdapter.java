@@ -29,29 +29,35 @@ import java.util.List;
  */
 public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
 
-
-
-
+    /*/////////////////////////////////////////////////
+    //MEMBERS
+    /*/////////////////////////////////////////////////
     private List<Movie> list;
     private Context context;
 
-    public RvAdapter(List<Movie> list,Context context)
-    {
+
+    /*/////////////////////////////////////////////////
+    //CONSTRUCTOR
+    /*/////////////////////////////////////////////////
+    public RvAdapter(List<Movie> list, Context context) {
         this.list = list;
         this.context = context;
     }
 
+
+    /*/////////////////////////////////////////////////
+    //LIFECYCLE METHODS
+    /*/////////////////////////////////////////////////
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item, parent, false);
         MovieViewHolder pvh = new MovieViewHolder(view);
         return pvh;
     }
-
     @Override
     public void onBindViewHolder(final MovieViewHolder holder, final int position) {
-       // holder.personName.setText(list.get(position).getName());
+        // holder.personName.setText(list.get(position).getName());
         final String movieId = list.get(position).getMovieId();
         holder.title.setText(list.get(position).getName());
         holder.releaseYear.setText(MovieUtils.getFormattedDate(list.get(position).getReleaseYear()));
@@ -61,7 +67,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
         String thumb = list.get(position).getPosterThumbnail();
         //thumb = "http://image.tmdb.org/t/p/w185"+thumb;
         thumb = MovieUtils.imageURL(thumb);
-        Log.d("Thumb",thumb);
+        Log.d("Thumb", thumb);
         Picasso.with(context)
                 .load(thumb).error(R.drawable.placeholder)
                 .into(holder.posterThumbnail);
@@ -89,7 +95,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
             @Override
             public void onClick(View v) {
 
-                if(Build.VERSION.SDK_INT>20) {
+                if (Build.VERSION.SDK_INT > 20) {
                     int x = holder.moreInfoCard.getRight();
                     int y = holder.moreInfoCard.getBottom();
                     int radius = (int) Math.hypot(holder.moreInfoCard.getWidth(), holder.moreInfoCard.getHeight());
@@ -99,8 +105,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
                     holder.moreInfoCard.setVisibility(View.VISIBLE);
 
                     Log.d("GENRES", ((list.get(position)).getGenres().length) + "");
-                    if(list.get(position).getGenres().length!=0)
-                    {
+                    if (list.get(position).getGenres().length != 0) {
                         holder.genres.setText(MovieUtils.getGenre(list.get(position).getGenres()));
                         holder.genres.setVisibility(View.VISIBLE);
                     }
@@ -130,9 +135,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
                         }
                     });
 
-                }
-                else
-                {
+                } else {
                     holder.mainCard.setVisibility(View.INVISIBLE);
                     holder.moreInfoCard.setVisibility(View.VISIBLE);
                 }
@@ -143,7 +146,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
         holder.moreInfoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Build.VERSION.SDK_INT>20) {
+                if (Build.VERSION.SDK_INT > 20) {
                     int x = holder.moreInfoCard.getRight();
                     int y = holder.moreInfoCard.getBottom();
                     int radius = (int) Math.hypot(holder.moreInfoCard.getWidth(), holder.moreInfoCard.getHeight());
@@ -178,9 +181,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
                         }
                     });
 
-                }
-                else
-                {
+                } else {
                     holder.moreInfoCard.setVisibility(View.INVISIBLE);
                     holder.mainCard.setVisibility(View.VISIBLE);
                 }
@@ -188,13 +189,16 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
         });
 
     }
-
     @Override
     public int getItemCount() {
         return list.size();
     }
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder{
+
+    /*/////////////////////////////////////////////////
+    //View Holder Class
+    /*/////////////////////////////////////////////////
+    public class MovieViewHolder extends RecyclerView.ViewHolder {
 
         ImageView posterThumbnail;
         TextView title;
@@ -209,25 +213,25 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
 
         public MovieViewHolder(View itemView) {
             super(itemView);
-            posterThumbnail = (ImageView)itemView.findViewById(R.id.posterThumbnail);
-            title = (TextView)itemView.findViewById(R.id.title);
-            releaseYear = (TextView)itemView.findViewById(R.id.release_date);
-            overView = (TextView)itemView.findViewById(R.id.overview);
-            viewMore = (TextView)itemView.findViewById(R.id.moreInfo);
+            posterThumbnail = (ImageView) itemView.findViewById(R.id.posterThumbnail);
+            title = (TextView) itemView.findViewById(R.id.title);
+            releaseYear = (TextView) itemView.findViewById(R.id.release_date);
+            overView = (TextView) itemView.findViewById(R.id.overview);
+            viewMore = (TextView) itemView.findViewById(R.id.moreInfo);
 
-            mainCard = (View)itemView.findViewById(R.id.mainCard);
-            moreInfoCard = (View)itemView.findViewById(R.id.viewMoreMovieCard);
-            moreInfoBack = (ImageView)moreInfoCard.findViewById(R.id.backToCard);
+            mainCard = (View) itemView.findViewById(R.id.mainCard);
+            moreInfoCard = (View) itemView.findViewById(R.id.viewMoreMovieCard);
+            moreInfoBack = (ImageView) moreInfoCard.findViewById(R.id.backToCard);
 
-            genres = (TextView)moreInfoCard.findViewById(R.id.genres);
-            originalLanguage = (TextView)moreInfoCard.findViewById(R.id.original_language);
+            genres = (TextView) moreInfoCard.findViewById(R.id.genres);
+            originalLanguage = (TextView) moreInfoCard.findViewById(R.id.original_language);
 
 
-
-            if(Build.VERSION.SDK_INT>20) {
+            if (Build.VERSION.SDK_INT > 20) {
                 posterThumbnail.setTransitionName("ImageView");
                 title.setTransitionName("title");
             }
         }
     }
+
 }

@@ -20,12 +20,18 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * Created by Illuminati on 6/21/2017.
  */
-public class CrewListAdapter  extends RecyclerView.Adapter<CrewListAdapter.CrewViewHolder> {
+public class CrewListAdapter extends RecyclerView.Adapter<CrewListAdapter.CrewViewHolder> {
 
-
+    /*/////////////////////////////////////////////////
+    //MEMBERS
+    /*/////////////////////////////////////////////////
     List<Crew> list;
     Context context;
 
+
+    /*/////////////////////////////////////////////////
+    //CONSTRUCTOR
+    /*/////////////////////////////////////////////////
     public CrewListAdapter(List<Crew> list, Context context) {
         this.list = list;
         this.context = context;
@@ -33,13 +39,15 @@ public class CrewListAdapter  extends RecyclerView.Adapter<CrewListAdapter.CrewV
     }
 
 
+    /*/////////////////////////////////////////////////
+    //LIFECYCLE METHODS
+    /*/////////////////////////////////////////////////
     @Override
     public CrewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.crew_landing_single_item, parent, false);
         CrewViewHolder actorViewHolder = new CrewViewHolder(view);
         return actorViewHolder;
     }
-
     @Override
     public void onBindViewHolder(CrewViewHolder holder, int position) {
 
@@ -56,13 +64,16 @@ public class CrewListAdapter  extends RecyclerView.Adapter<CrewListAdapter.CrewV
                 .into(holder.crewImage);
 
     }
-
     @Override
     public int getItemCount() {
         return list.size();
     }
 
-    public class CrewViewHolder extends RecyclerView.ViewHolder{
+
+    /*/////////////////////////////////////////////////
+    //View Holder class
+    /*/////////////////////////////////////////////////
+    public class CrewViewHolder extends RecyclerView.ViewHolder {
 
         private CircleImageView crewImage;
         private TextView crewName;
@@ -71,10 +82,11 @@ public class CrewListAdapter  extends RecyclerView.Adapter<CrewListAdapter.CrewV
         public CrewViewHolder(View itemView) {
             super(itemView);
             //mediaImage = (ImageView)itemView.findViewById(R.id.MediaImage);
-            crewImage = (CircleImageView)itemView.findViewById(R.id.crewImage);
-            crewName =(TextView)itemView.findViewById(R.id.crewName);
-            roleName =(TextView)itemView.findViewById(R.id.crewRole);
+            crewImage = (CircleImageView) itemView.findViewById(R.id.crewImage);
+            crewName = (TextView) itemView.findViewById(R.id.crewName);
+            roleName = (TextView) itemView.findViewById(R.id.crewRole);
 
         }
     }
+
 }

@@ -29,15 +29,40 @@ import java.util.List;
  */
 public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdapter.PosterHolder> {
 
+    /*/////////////////////////////////////////////////
+    //MEMBERS
+    /*/////////////////////////////////////////////////
     private List<MovieRole> list;
     private Context context;
 
-    public ViewAllMoviesAdapter(List<MovieRole> list,Context context)
-    {
+
+    /*/////////////////////////////////////////////////
+    //CONSTRUCTOR
+    /*/////////////////////////////////////////////////
+    public ViewAllMoviesAdapter(List<MovieRole> list, Context context) {
         this.list = list;
         this.context = context;
     }
 
+
+    /*/////////////////////////////////////////////////
+    //PRIVATE METHODS
+    /*/////////////////////////////////////////////////
+    private void setScaleAnimation(View view) {
+        ScaleAnimation anim = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setDuration(1000);
+        view.startAnimation(anim);
+    }
+    private void setFadeAnimation(View view) {
+        AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(500);
+        view.startAnimation(anim);
+    }
+
+
+    /*/////////////////////////////////////////////////
+    //LIFECYCLE METHODS
+    /*/////////////////////////////////////////////////
     @Override
     public PosterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -45,11 +70,10 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
         PosterHolder pvh = new PosterHolder(view);
         return pvh;
     }
-
     @Override
     public void onBindViewHolder(final PosterHolder holder, int position) {
 
-        final MovieRole movieRole= list.get(position);
+        final MovieRole movieRole = list.get(position);
         //setFadeAnimation(holder.itemView);
         final String imagePath = movieRole.getMoviePosterPath();
         final String thumb = MovieUtils.imageURL(imagePath);
@@ -66,14 +90,12 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, BlankActivity.class);
-                i.putExtra("blankActivityText",movieRole.getMovieId());
+                i.putExtra("blankActivityText", movieRole.getMovieId());
 
-                if(Build.VERSION.SDK_INT>20)
-                {
+                if (Build.VERSION.SDK_INT > 20) {
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, holder.moviePoster, "ImageView");
                     context.startActivity(i, options.toBundle());
-                }
-                else {
+                } else {
                     context.startActivity(i);
                 }
             }
@@ -83,18 +105,20 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
             @Override
             public void onClick(View v) {
                 //MovieUtils.previewImage(context,movieRole.getMoviePosterPath());
-                MovieUtils.previewImageWithAnimation(context,movieRole.getMoviePosterPath(),holder.moviePoster,"ImageView");
+                MovieUtils.previewImageWithAnimation(context, movieRole.getMoviePosterPath(), holder.moviePoster, "ImageView");
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return list.size();
     }
 
 
-    public class PosterHolder extends RecyclerView.ViewHolder{
+    /*/////////////////////////////////////////////////
+    //View Holder Class
+    /*/////////////////////////////////////////////////
+    public class PosterHolder extends RecyclerView.ViewHolder {
 
         ImageView moviePoster;
         TextView movieName;
@@ -103,28 +127,14 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
 
         public PosterHolder(View itemView) {
             super(itemView);
-            moviePoster = (ImageView)itemView.findViewById(R.id.posterThumbnail);
-            movieName = (TextView)itemView.findViewById(R.id.title);
-            releaseDate = (TextView)itemView.findViewById(R.id.release_date);
-            characterName = (TextView)itemView.findViewById(R.id.characterName);
-            if(Build.VERSION.SDK_INT>20)
-            moviePoster.setTransitionName("ImageView");
+            moviePoster = (ImageView) itemView.findViewById(R.id.posterThumbnail);
+            movieName = (TextView) itemView.findViewById(R.id.title);
+            releaseDate = (TextView) itemView.findViewById(R.id.release_date);
+            characterName = (TextView) itemView.findViewById(R.id.characterName);
+            if (Build.VERSION.SDK_INT > 20)
+                moviePoster.setTransitionName("ImageView");
         }
 
     }
-
-
-    private void setScaleAnimation(View view) {
-        ScaleAnimation anim = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        anim.setDuration(1000);
-        view.startAnimation(anim);
-    }
-
-    private void setFadeAnimation(View view) {
-        AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
-        anim.setDuration(500);
-        view.startAnimation(anim);
-    }
-
 
 }

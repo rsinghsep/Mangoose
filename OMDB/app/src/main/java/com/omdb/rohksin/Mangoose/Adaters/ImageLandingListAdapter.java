@@ -18,25 +18,32 @@ import java.util.List;
 public class ImageLandingListAdapter extends RecyclerView.Adapter<ImageLandingListAdapter.ImageHolder> {
 
 
-
-
+    /*/////////////////////////////////////////////////
+    //MEMBERS
+    /*/////////////////////////////////////////////////
     private List<String> list;
     private Context context;
 
-    public ImageLandingListAdapter(List<String> list,Context context)
-    {
+
+    /*/////////////////////////////////////////////////
+    //CONSTRUCTOR
+    /*/////////////////////////////////////////////////
+    public ImageLandingListAdapter(List<String> list, Context context) {
         this.list = list;
         this.context = context;
     }
 
+
+    /*/////////////////////////////////////////////////
+    //LIFECYCLE METHODS
+    /*/////////////////////////////////////////////////
     @Override
     public ImageHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.landing_image,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.landing_image, parent, false);
         ImageHolder pvh = new ImageHolder(view);
         return pvh;
     }
-
     @Override
     public void onBindViewHolder(ImageHolder holder, int position) {
         // holder.personName.setText(list.get(position).getName());
@@ -52,24 +59,28 @@ public class ImageLandingListAdapter extends RecyclerView.Adapter<ImageLandingLi
         holder.landingImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("ABC","ABC");
+                Log.d("ABC", "ABC");
                 Toast.makeText(context, "Image Clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return list.size();
     }
 
-    public class ImageHolder extends RecyclerView.ViewHolder{
+
+    /*/////////////////////////////////////////////////
+    //View holder class
+    /*/////////////////////////////////////////////////
+    public class ImageHolder extends RecyclerView.ViewHolder {
 
         ImageView landingImage;
 
         public ImageHolder(View itemView) {
             super(itemView);
-            landingImage = (ImageView)itemView.findViewById(R.id.landing_image);
+            landingImage = (ImageView) itemView.findViewById(R.id.landing_image);
         }
     }
+
 }

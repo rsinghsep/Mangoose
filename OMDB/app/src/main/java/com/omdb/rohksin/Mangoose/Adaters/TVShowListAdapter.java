@@ -24,26 +24,32 @@ import java.util.List;
  */
 public class TVShowListAdapter extends RecyclerView.Adapter<TVShowListAdapter.TvViewHolder> {
 
-
-
-
+    /*/////////////////////////////////////////////////
+    //MEMBERS
+    /*/////////////////////////////////////////////////
     private List<TvShow> list;
     private Context context;
 
-    public TVShowListAdapter(List<TvShow> list,Context context)
-    {
+
+    /*/////////////////////////////////////////////////
+    //CONSTRUCTOR
+    /*/////////////////////////////////////////////////
+    public TVShowListAdapter(List<TvShow> list, Context context) {
         this.list = list;
         this.context = context;
     }
 
+
+    /*/////////////////////////////////////////////////
+    //LIFECYCLE METHODS
+    /*/////////////////////////////////////////////////
     @Override
     public TvViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item, parent, false);
         TvViewHolder pvh = new TvViewHolder(view);
         return pvh;
     }
-
     @Override
     public void onBindViewHolder(TvViewHolder holder, int position) {
         // holder.personName.setText(list.get(position).getName());
@@ -65,7 +71,7 @@ public class TVShowListAdapter extends RecyclerView.Adapter<TVShowListAdapter.Tv
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(context,"FOFO",Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "FOFO", Toast.LENGTH_LONG).show();
                 //Intent i = new Intent(context, TVShowDetailActivity.class);     Integrate When layout is done
                 Intent i = new Intent(context, ComingSoon.class);
                 i.putExtra("tvshowdetailactivity", movieId);
@@ -74,13 +80,16 @@ public class TVShowListAdapter extends RecyclerView.Adapter<TVShowListAdapter.Tv
         });
         // holder.posterThumbnail.setImageResource();
     }
-
     @Override
     public int getItemCount() {
         return list.size();
     }
 
-    public class TvViewHolder extends RecyclerView.ViewHolder{
+
+    /*/////////////////////////////////////////////////
+    //View Holder Class
+    /*/////////////////////////////////////////////////
+    public class TvViewHolder extends RecyclerView.ViewHolder {
 
         ImageView posterThumbnail;
         TextView title;
@@ -90,11 +99,12 @@ public class TVShowListAdapter extends RecyclerView.Adapter<TVShowListAdapter.Tv
 
         public TvViewHolder(View itemView) {
             super(itemView);
-            posterThumbnail = (ImageView)itemView.findViewById(R.id.posterThumbnail);
-            title = (TextView)itemView.findViewById(R.id.title);
-            releaseYear = (TextView)itemView.findViewById(R.id.release_date);
-            overView = (TextView)itemView.findViewById(R.id.overview);
-            mainCard = (View)itemView.findViewById(R.id.mainCard);
+            posterThumbnail = (ImageView) itemView.findViewById(R.id.posterThumbnail);
+            title = (TextView) itemView.findViewById(R.id.title);
+            releaseYear = (TextView) itemView.findViewById(R.id.release_date);
+            overView = (TextView) itemView.findViewById(R.id.overview);
+            mainCard = (View) itemView.findViewById(R.id.mainCard);
         }
     }
+
 }

@@ -20,10 +20,16 @@ import java.util.List;
  */
 public class ListAdaper extends RecyclerView.Adapter<ListAdaper.MediaViewHolder> {
 
-
+    /*/////////////////////////////////////////////////
+    //MEMBERS
+    /*/////////////////////////////////////////////////
     List<String> list;
     Context context;
 
+
+    /*/////////////////////////////////////////////////
+    //CONSTRUCTOR
+    /*/////////////////////////////////////////////////
     public ListAdaper(List<String> list, Context context) {
         this.list = list;
         this.context = context;
@@ -31,18 +37,20 @@ public class ListAdaper extends RecyclerView.Adapter<ListAdaper.MediaViewHolder>
     }
 
 
+    /*/////////////////////////////////////////////////
+    //LIFECYCLE METHODS
+    /*/////////////////////////////////////////////////
     @Override
     public MediaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.landing_image, parent, false);
         MediaViewHolder mediaHolder = new MediaViewHolder(view);
         return mediaHolder;
     }
-
     @Override
     public void onBindViewHolder(MediaViewHolder holder, int position) {
 
         final String thumb = list.get(position);
-        Log.d("ImagePICASSO",thumb);
+        Log.d("ImagePICASSO", thumb);
         Picasso.with(context)
                 .load(MovieUtils.imageURL(thumb))
                 .into(holder.mediaImage);
@@ -51,29 +59,33 @@ public class ListAdaper extends RecyclerView.Adapter<ListAdaper.MediaViewHolder>
             @Override
             public void onClick(View v) {
                 Intent i = new Intent();
-                i.putExtra("","");
-                MovieUtils.previewImage(context,thumb);
+                i.putExtra("", "");
+                MovieUtils.previewImage(context, thumb);
             }
         });
 
         //holder.mediaImage.setImageResource(R.drawable.actor2);
 
     }
-
     @Override
     public int getItemCount() {
         //return list.size();
         return list.size();
     }
 
-    public class MediaViewHolder extends RecyclerView.ViewHolder{
+
+    /*/////////////////////////////////////////////////
+    //View Holder Class
+    /*/////////////////////////////////////////////////
+    public class MediaViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mediaImage;
 
         public MediaViewHolder(View itemView) {
             super(itemView);
             //mediaImage = (ImageView)itemView.findViewById(R.id.MediaImage);
-            mediaImage = (ImageView)itemView.findViewById(R.id.landing_image);
+            mediaImage = (ImageView) itemView.findViewById(R.id.landing_image);
         }
     }
+
 }

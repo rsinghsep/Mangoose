@@ -53,15 +53,31 @@ import java.util.List;
  */
 public class BlankActivity extends AppCompatActivity {
 
+    /*/////////////////////////////////////////////////
+    //MEMBERS
+    /*/////////////////////////////////////////////////
     private DetailMovie movie;
     public static String OBJECTMAPPED = "com.omdb.rohksin.omdb.BlankActivity.ObjectMapped";
     public static String MOVIE_LIST ="com.omdb.rohksin.omdb.BlankActivity.MovieList";
-
     private CollapsingToolbarLayout layout;
 
+
+    /*/////////////////////////////////////////////////
+    //PUBLIC METHODS
+    /*/////////////////////////////////////////////////
+    public void sendBroadcast(){
+        Intent i = new Intent();
+        i.setAction(OBJECTMAPPED);
+        i.putExtra("BlankActivityMovie",movie);
+        sendBroadcast(i);
+    }
+
+
+    /*/////////////////////////////////////////////////
+    //LIFECYCLE METHODS
+    /*/////////////////////////////////////////////////
     @Override
-    protected void onCreate(Bundle saveBundleInstance)
-    {
+    protected void onCreate(Bundle saveBundleInstance){
         super.onCreate(saveBundleInstance);
         setContentView(R.layout.blank_activity);
         Intent i = getIntent();
@@ -111,15 +127,11 @@ public class BlankActivity extends AppCompatActivity {
 
     }
 
-    public void sendBroadcast(){
-        Intent i = new Intent();
-        i.setAction(OBJECTMAPPED);
-        i.putExtra("BlankActivityMovie",movie);
-        sendBroadcast(i);
-    }
 
-    private class DetailMovieReceiver extends BroadcastReceiver
-    {
+    /*/////////////////////////////////////////////////
+    //Inner Class
+    /*/////////////////////////////////////////////////
+    private class DetailMovieReceiver extends BroadcastReceiver{
 
         private Context context;
 
@@ -561,7 +573,5 @@ public class BlankActivity extends AppCompatActivity {
 
         }
     }
-
-
 
 }

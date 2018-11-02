@@ -11,7 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
 
-
         <activity android:name="com.omdb.rohksin.Mangoose.BlankActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
@@ -21,9 +20,7 @@
         <activity android:name="com.omdb.rohksin.Mangoose.LandingActivities.AllActorsActivity"/>
         <activity android:name="com.omdb.rohksin.Mangoose.LandingActivities.AllCrewActivity"/>
         <activity android:name="com.omdb.rohksin.Mangoose.PeopleDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
-
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name="com.omdb.rohksin.Mangoose.ObjectOrientedSearch.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar"
             >
@@ -32,7 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name="com.omdb.rohksin.Mangoose.ListActivity"
             />
         <activity android:name="com.omdb.rohksin.Mangoose.PreviewImageActivity"
@@ -44,12 +40,10 @@
         <activity android:name="com.omdb.rohksin.Mangoose.FilterMovieActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
-
         <activity android:name="com.omdb.rohksin.Mangoose.ObjectOrientedSearch.HomePage.MainSearchActivity"
             android:theme="@style/AppTheme.NoActionBar">
             >
         </activity>
-
         <activity android:name="com.omdb.rohksin.Mangoose.ComingSoon"/>
         <activity android:name="com.omdb.rohksin.Mangoose.SerializableCarriers.BiographyActivity"/>
 
