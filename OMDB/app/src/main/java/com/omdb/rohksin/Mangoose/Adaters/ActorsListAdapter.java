@@ -63,7 +63,6 @@ public class ActorsListAdapter extends RecyclerView.Adapter<ActorsListAdapter.Ac
 
             if (Build.VERSION.SDK_INT > 20)
                 actorImage.setTransitionName("ACTOR");
-
         }
     }
 
